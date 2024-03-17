@@ -1,0 +1,22 @@
+.abc{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 72vh;
+  margin-bottom: 60%;
+}
+
+
+.register-form {
+  border: 1px solid gray;
+  padding: 30px;
+}
+
+.home{
+  background-color: green;
+  font-size: 200;
+  justify-content: left;
+
+}
+
+
