@@ -5,6 +5,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "name is require"],
   },
+  //-----google-----
+  
+  //----google----
   email: {
     type: String,
     required: [true, "email is require"],
