@@ -55,7 +55,7 @@ const getDoctorByIdController = async (req, res) => {
     res.status(500).send({
       success: false,
       error,
-      message: "Erro in Single docot info",
+      message: "Erro in Single doctor info",
     });
   }
 };
@@ -117,5 +117,3 @@ module.exports = {
   doctorAppointmentsController,
   updateStatusController,
 };
-
-

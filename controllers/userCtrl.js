@@ -1,12 +1,9 @@
 const userModel = require("../models/userModels");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-<<<<<<< HEAD
-=======
 const doctorModel = require("../models/doctorModel");
 const appointmentModel = require("../models/appointmentModel");
 const moment = require("moment");
->>>>>>> 4e1348a (notificationcontroller commit)
 //register callback
 const registerController = async (req, res) => {
   try {
@@ -82,13 +79,6 @@ const authController = async (req, res) => {
   }
 };
 
-<<<<<<< HEAD
-module.exports = {
-    loginController,
-    registerController,
-    authController,
-};
-=======
 // APpply DOctor CTRL
 const applyDoctorController = async (req, res) => {
   try {
@@ -174,7 +164,7 @@ const getAllDocotrsController = async (req, res) => {
     const doctors = await doctorModel.find({ status: "approved" });
     res.status(200).send({
       success: true,
-      message: "Doctors Lists Fetched Successfully",
+      message: "Docots Lists Fetched Successfully",
       data: doctors,
     });
   } catch (error) {
@@ -190,17 +180,15 @@ const getAllDocotrsController = async (req, res) => {
 //BOOK APPOINTMENT
 const bookeAppointmnetController = async (req, res) => {
   try {
-    req.body.date = moment(req.body.date, "YYYY-MM-DD").toISOString();
-    req.body.time = moment(req.body.time, "HH:mm").toISOString();
+    req.body.date = moment(req.body.date, "DD-MM-YYYY");
+    req.body.time = moment(req.body.time, "HH:mm");
     req.body.status = "pending";
     const newAppointment = new appointmentModel(req.body);
     await newAppointment.save();
-    // const newAppointment = await appointmentModel({ ...req.body, status: "pending" });
-
     const user = await userModel.findOne({ _id: req.body.doctorInfo.userId });
     user.notifcation.push({
       type: "New-appointment-request",
-      message: `A New Appointment Request from ${req.body.userInfo.name}`,
+      message: `A new Appointment Request from ${req.body.userInfo.name}`,
       onCLickPath: "/user/appointments",
     });
     await user.save();
@@ -218,6 +206,7 @@ const bookeAppointmnetController = async (req, res) => {
   }
 };
 
+// booking bookingAvailabilityController
 const bookingAvailabilityController = async (req, res) => {
   try {
     const date = moment(req.body.date, "DD-MM-YY").toISOString();
@@ -287,5 +276,3 @@ module.exports = {
   bookingAvailabilityController,
   userAppointmentsController,
 };
-
->>>>>>> 4e1348a (notificationcontroller commit)
